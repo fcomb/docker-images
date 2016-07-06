@@ -2,14 +2,15 @@ FROM anapsix/alpine-java:jre8
 MAINTAINER Timothy Klim <fcomb@timothyklim.com>
 
 RUN adduser -D -g '' java
-WORKDIR /home/java
+ENV HOME /home/java
+WORKDIR ${HOME}
 
-RUN mkdir /home/java/bin && \
-    mkdir -p /home/java/.sbt/0.13/plugins && \
-    echo 'addSbtPlugin("io.get-coursier" % "sbt-coursier" % "1.0.0-M12-1")' > /home/java/.sbt/0.13/plugins/plugins.sbt
-ADD https://raw.githubusercontent.com/TimothyKlim/sbt-extras/master/sbt /home/java/bin/
-RUN chown -R java:java /home/java && \
-    chmod +x /home/java/bin/sbt
+RUN mkdir ${HOME}/bin && \
+    mkdir -p ${HOME}/.sbt/0.13/plugins && \
+    echo 'addSbtPlugin("io.get-coursier" % "sbt-coursier" % "1.0.0-M12-1")' > ${HOME}/.sbt/0.13/plugins/plugins.sbt
+ADD https://raw.githubusercontent.com/TimothyKlim/sbt-extras/master/sbt ${HOME}/bin/
+RUN chown -R java:java ${HOME} && \
+    chmod +x ${HOME}/bin/sbt
 
 USER java
-RUN /home/java/bin/sbt -sbt-force-latest -sbt-create -211
+RUN ${HOME}/bin/sbt -sbt-force-latest -sbt-create -211
