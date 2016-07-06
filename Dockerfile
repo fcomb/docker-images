@@ -13,4 +13,5 @@ RUN chown -R java:java ${HOME} && \
     chmod +x ${HOME}/bin/sbt
 
 USER java
-RUN ${HOME}/bin/sbt -sbt-force-latest -sbt-create -211
+RUN ${HOME}/bin/sbt -sbt-force-latest -sbt-create -211 && \
+    rm -rf ${HOME}/project ${HOME}/target
