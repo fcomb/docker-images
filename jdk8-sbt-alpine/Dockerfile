@@ -1,4 +1,4 @@
-FROM anapsix/alpine-java:jre8
+FROM anapsix/alpine-java:jdk8
 MAINTAINER Timothy Klim <fcomb@timothyklim.com>
 
 RUN adduser -D -g '' java
