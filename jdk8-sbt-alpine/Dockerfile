@@ -1,4 +1,4 @@
-FROM lwieske/java-8:jdk-8u112-slim
+FROM lwieske/java-8:jdk-8u121-slim
 MAINTAINER Timothy Klim <fcomb@timothyklim.com>
 
 RUN adduser -D -g '' java
